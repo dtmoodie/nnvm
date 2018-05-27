@@ -381,7 +381,7 @@ class OpGroup {
  */
 #define NNVM_REGISTER_OP(OpName)                                     \
   DMLC_STR_CONCAT(NNVM_REGISTER_VAR_DEF(OpName), __COUNTER__) =         \
-      ::dmlc::Registry<::nnvm::Op>::Get()->__REGISTER_OR_GET__(#OpName)
+      ::dmlc::Registry< ::nnvm::Op >::Get()->__REGISTER_OR_GET__(#OpName)
 
 /*!
  * \def NNVM_REGISTER_OP_GROUP
@@ -478,7 +478,13 @@ inline Op& Op::describe(const std::string& descr) {  // NOLINT(*)
 inline Op& Op::add_argument(const std::string &name,
                             const std::string &type,
                             const std::string &description) {
-  arguments.push_back({name, type, type, description});
+
+  ParamFieldInfo info;
+  info.name =name;
+  info.type =type;
+  info.type_info_str = type;
+  info.description = description;
+  arguments.push_back(info);
   return *this;
 }
 

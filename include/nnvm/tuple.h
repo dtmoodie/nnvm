@@ -33,7 +33,7 @@ template<typename ValueType>
 class Tuple {
  public:
   /*! \brief default constructor */
-  Tuple() = default;
+  Tuple(){}
   /*! \brief destructor */
   inline ~Tuple() {
     delete [] data_heap_;
